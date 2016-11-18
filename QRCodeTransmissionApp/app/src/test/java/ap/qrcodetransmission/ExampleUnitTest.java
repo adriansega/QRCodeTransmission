@@ -1,4 +1,4 @@
-package ap.qrcodetransmissionapp;
+package ap.qrcodetransmission;
 
 import org.junit.Test;
 

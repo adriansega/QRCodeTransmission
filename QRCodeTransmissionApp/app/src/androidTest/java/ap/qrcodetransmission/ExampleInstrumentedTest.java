@@ -1,4 +1,4 @@
-package ap.qrcodetransmissionapp;
+package ap.qrcodetransmission;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("ap.qrcodetransmissionapp", appContext.getPackageName());
+        assertEquals("ap.qrcodetransmission", appContext.getPackageName());
     }
 }
