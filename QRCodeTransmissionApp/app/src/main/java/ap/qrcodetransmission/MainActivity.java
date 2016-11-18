@@ -1,4 +1,4 @@
-package ap.qrcodetransmissionapp;
+package ap.qrcodetransmission;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
