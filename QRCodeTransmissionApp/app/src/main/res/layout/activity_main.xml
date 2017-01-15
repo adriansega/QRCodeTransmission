@@ -19,11 +19,10 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button6"
+            android:id="@+id/read_code_button"
             android:background="@drawable/read_icon_red"
-            android:layout_marginBottom="96dp"
-            android:layout_above="@+id/button7"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:onClick="startReader"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -32,7 +31,7 @@
             android:background="@drawable/send_icon_red"
             android:layout_marginBottom="250dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/button6" />
+            android:layout_alignStart="@+id/read_code_button" />
 
     </RelativeLayout>
 </RelativeLayout>
