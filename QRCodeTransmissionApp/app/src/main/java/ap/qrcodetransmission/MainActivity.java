@@ -15,6 +15,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button read_code_button = (Button) findViewById(R.id.read_code_button);
+        Button generate_code_button = (Button) findViewById(R.id.generate_code_button);
+
+        generate_code_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent QR_generator = new Intent(getApplicationContext(), QR_generator.class);
+                startActivity(QR_generator);
+            }
+        });
 
         read_code_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -22,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(QR_reader);
             }
         });
+
+
+
+
 
     }
 }

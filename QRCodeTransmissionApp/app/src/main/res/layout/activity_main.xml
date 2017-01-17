@@ -27,11 +27,12 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button7"
+            android:id="@+id/generate_code_button"
             android:background="@drawable/send_icon_red"
             android:layout_marginBottom="250dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/read_code_button" />
+            android:layout_alignStart="@+id/read_code_button"
+            android:onClick="startGenerator"/>
 
     </RelativeLayout>
 </RelativeLayout>
