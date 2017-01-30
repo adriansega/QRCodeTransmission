@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,6 +26,10 @@ public class QR_generator extends AppCompatActivity{
     String nombre = "";
     int numCodigos = 0;
     int numCodigosTotal = 0;
+    //Campo de texto que contiene el nombre del archivo
+    EditText nombreArchivo = (EditText) findViewById(R.id.selectFile);
+    //Haz esto donde te haga falta para
+    String name = nombreArchivo.getText().toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

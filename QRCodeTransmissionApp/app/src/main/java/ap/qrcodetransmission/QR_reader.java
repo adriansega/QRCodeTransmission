@@ -4,6 +4,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 import com.google.zxing.Result;
 
@@ -16,6 +17,9 @@ public class QR_reader extends AppCompatActivity implements ZXingScannerView.Res
     ArrayList<String> archivo = new ArrayList<String>();
     FileWork f = null;
     int totalCodigos = 0;
+    //Caja de EditText
+    EditText fileName = (EditText) findViewById(R.id.fileName);
+    String name = fileName.getText().toString();
 
     private ZXingScannerView escanerView;
     @Override
