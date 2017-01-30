@@ -37,6 +37,7 @@ public class QR_generator extends AppCompatActivity{
     public void getPaht(View view){
 
         TextView t = (TextView) findViewById(R.id.text);
+        t.setText("qr "+numCodigos+ " de "+numCodigosTotal);
         //t.setText(f.writeArchivo());
     }
 
@@ -44,13 +45,13 @@ public class QR_generator extends AppCompatActivity{
         if(numCodigos ==0) {
             String nombre = "prueba.txt";
             archivo = f.readArchivo(nombre);
-            numCodigos = numCodigosTotal = 1;
+            numCodigosTotal = 1;
             if(archivo.size() >300) defineQRS();
         }
         if(numCodigos>numCodigosTotal)return ;
         else {
             String set = "";
-            for (int i = 0 + 300 * (numCodigos - 1); ((i < 300 * numCodigos) && (i < archivo.size())); i++) {
+            for (int i = 0 + 300 * (numCodigos); ((i < 300 * numCodigos) && (i < archivo.size())); i++) {
                 set += archivo.get(i) + " ";
             }
             numCodigos++;
