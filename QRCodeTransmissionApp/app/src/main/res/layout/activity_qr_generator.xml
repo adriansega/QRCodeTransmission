@@ -15,17 +15,12 @@
     android:baselineAligned="false">
 
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/qr"
-        />
-
     <TextView
         android:text="Escribe el nombre del archivo que deseas transmitir:"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/text" />
+
 
     <EditText
         android:layout_width="match_parent"
@@ -42,11 +37,16 @@
         android:onClick="generate"
         android:id="@+id/generate" />
 
-    <Button
-        android:text="Filepaht"
+    <TextView
+        android:text=""
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="getPaht"
-        android:id="@+id/filepath" />
+        android:id="@+id/QRleft" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/qr"
+        />
 
 </LinearLayout>

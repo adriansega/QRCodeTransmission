@@ -18,8 +18,7 @@ public class QR_reader extends AppCompatActivity implements ZXingScannerView.Res
     FileWork f = null;
     int totalCodigos = 0;
     //Caja de EditText
-    EditText fileName = (EditText) findViewById(R.id.fileName);
-    String name = fileName.getText().toString();
+
 
     private ZXingScannerView escanerView;
     @Override
@@ -39,7 +38,9 @@ public class QR_reader extends AppCompatActivity implements ZXingScannerView.Res
 
     public void guardarArchivo(View view){
         if(archivo.size() == 0)return;
-        f.writeArchivo(archivo,"prueba.txt");
+        EditText fileName = (EditText) findViewById(R.id.fileName);
+        String name = fileName.getText().toString();
+        f.writeArchivo(archivo,name);
     }
 
     @Override

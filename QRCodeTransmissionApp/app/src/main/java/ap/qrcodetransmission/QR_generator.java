@@ -26,10 +26,7 @@ public class QR_generator extends AppCompatActivity{
     String nombre = "";
     int numCodigos = 0;
     int numCodigosTotal = 0;
-    //Campo de texto que contiene el nombre del archivo
-    EditText nombreArchivo = (EditText) findViewById(R.id.selectFile);
-    //Haz esto donde te haga falta para
-    String name = nombreArchivo.getText().toString();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,22 +36,27 @@ public class QR_generator extends AppCompatActivity{
         f = new FileWork(this);
     }
 
-    public void getPaht(View view){
-
-        TextView t = (TextView) findViewById(R.id.text);
-        t.setText("qr "+numCodigos+ " de "+numCodigosTotal);
-        //t.setText(f.writeArchivo());
-    }
 
     public void generate(View view){
+
+        //Campo de texto que contiene el nombre del archivo
+        EditText nombreArchivo = (EditText) findViewById(R.id.selectFile);
+        //Haz esto donde te haga falta para
+        String name = nombreArchivo.getText().toString();
+        TextView t = (TextView) findViewById(R.id.QRleft);
+
         if(numCodigos ==0) {
-            String nombre = "prueba.txt";
-            archivo = f.readArchivo(nombre);
+
+            archivo = f.readArchivo(name);
             numCodigosTotal = 1;
             if(archivo.size() >300) defineQRS();
         }
         if(numCodigos>numCodigosTotal)return ;
         else {
+
+
+            t.setText("Codigos generados para archivo "+name+" : "+numCodigos+" de "+numCodigosTotal);
+
             String set = "";
             for (int i = 0 + 300 * (numCodigos); ((i < 300 * numCodigos) && (i < archivo.size())); i++) {
                 set += archivo.get(i) + " ";
