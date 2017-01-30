@@ -7,15 +7,23 @@ import android.view.View;
 
 import com.google.zxing.Result;
 
+import java.util.ArrayList;
+
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class QR_reader extends AppCompatActivity implements ZXingScannerView.ResultHandler{
+
+    ArrayList<String> archivo = new ArrayList<String>();
+    FileWork f = null;
+    int totalCodigos = 0;
 
     private ZXingScannerView escanerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_reader);
+        f = new FileWork(this);
+
     }
 
     public void EscanerQR(View view){
@@ -23,6 +31,10 @@ public class QR_reader extends AppCompatActivity implements ZXingScannerView.Res
         setContentView(escanerView);
         escanerView.setResultHandler(this);
         escanerView.startCamera();
+    }
+
+    public void guardarArchivo(View view){
+        f.writeArchivo(archivo,"prueba.txt");
     }
 
     @Override
@@ -35,9 +47,15 @@ public class QR_reader extends AppCompatActivity implements ZXingScannerView.Res
     public void handleResult(Result result) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Resultado del escaner");
-        builder.setMessage(result.getText());
+        String[] set = result.getText().split(" ");
+        for(String i : set)
+            archivo.add(i);
+
+        builder.setMessage("Codigos leidos = "+totalCodigos);
+        totalCodigos++;
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
-        escanerView.resumeCameraPreview(this);
+        escanerView.stopCamera();
+        setContentView(R.layout.activity_qr_reader);
     }
 }

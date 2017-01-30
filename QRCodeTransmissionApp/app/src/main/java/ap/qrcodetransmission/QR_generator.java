@@ -8,42 +8,59 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.TextView;
+
 
 
 import com.google.zxing.*;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
+import java.util.ArrayList;
 
 
 public class QR_generator extends AppCompatActivity{
 
-
+    ArrayList<String> archivo = new ArrayList<String>();
+    FileWork f = null;
+    String nombre = "";
+    int numCodigos = 0;
+    int numCodigosTotal = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_qr_generator);
+        f = new FileWork(this);
     }
 
     public void getPaht(View view){
-        FileWork f = new FileWork(this);
+
         TextView t = (TextView) findViewById(R.id.text);
-        t.setText(f.writeArchivo());
+        //t.setText(f.writeArchivo());
     }
 
     public void generate(View view){
-        //ImageView qr = (ImageView) findViewById(R.id.qr);
+        if(numCodigos ==0) {
+            String nombre = "prueba.txt";
+            archivo = f.readArchivo(nombre);
+            numCodigos = numCodigosTotal = 1;
+            if(archivo.size() >1000) defineQRS();
+        }
 
-       // FileWork.encodeToQrCode("hola mundo",256,256);
-        ImageView qr = (ImageView) findViewById(R.id.qr);
         String set = "";
-        for(int i = 0; i< 50;i++)
-            set += "Susana grison me ha convencido ";
-        qr.setImageBitmap(encodeToQrCode(set, 2000,2000));
+        for(int i = 0+(1000*numCodigos-1); i<1000*numCodigos||i<archivo.size();i++){
+            set+=archivo.get(i)+" ";
+        }
+        numCodigos++;
+        ImageView qr = (ImageView) findViewById(R.id.qr);
+        qr.setImageBitmap(encodeToQrCode(set, 2500,2500));
     }
 
+    public void defineQRS(){
+        numCodigosTotal = Math.round(archivo.size()/1000);
+        numCodigos = 1;
+    }
     @Override
     protected void onPause() {
         super.onPause();
