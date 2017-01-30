@@ -45,20 +45,22 @@ public class QR_generator extends AppCompatActivity{
             String nombre = "prueba.txt";
             archivo = f.readArchivo(nombre);
             numCodigos = numCodigosTotal = 1;
-            if(archivo.size() >1000) defineQRS();
+            if(archivo.size() >300) defineQRS();
         }
-
-        String set = "";
-        for(int i = 0+(1000*numCodigos-1); i<1000*numCodigos||i<archivo.size();i++){
-            set+=archivo.get(i)+" ";
+        if(numCodigos>numCodigosTotal)return ;
+        else {
+            String set = "";
+            for (int i = 0 + 300 * (numCodigos - 1); ((i < 300 * numCodigos) && (i < archivo.size())); i++) {
+                set += archivo.get(i) + " ";
+            }
+            numCodigos++;
+            ImageView qr = (ImageView) findViewById(R.id.qr);
+            qr.setImageBitmap(encodeToQrCode(set, 2500, 2500));
         }
-        numCodigos++;
-        ImageView qr = (ImageView) findViewById(R.id.qr);
-        qr.setImageBitmap(encodeToQrCode(set, 2500,2500));
     }
 
     public void defineQRS(){
-        numCodigosTotal = Math.round(archivo.size()/1000);
+        numCodigosTotal = Math.round(archivo.size()/300);
         numCodigos = 1;
     }
     @Override

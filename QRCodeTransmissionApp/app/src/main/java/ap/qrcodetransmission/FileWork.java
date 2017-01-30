@@ -2,6 +2,7 @@ package ap.qrcodetransmission;
 
 import android.content.Context;
 import android.os.Environment;
+import android.support.v7.app.AlertDialog;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -26,33 +27,44 @@ public class FileWork {
         this.c = c;
     }
 
-    public String writeArchivo(ArrayList<String> archivo, String nombre){
-        File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+ File.separator+nombre);
+    public String writeArchivo(ArrayList<String> archivo, String nombre) {
+        File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + File.separator + nombre);
         FileOutputStream os = null;
         String temp = "";
-        for(String e : archivo){
-            temp+=e+" ";
+        for (String e : archivo) {
+            temp += e + " ";
         }
         byte[] bytes = temp.getBytes();
         int w = 0;
         String[] r = temp.split(" ");
 
-        for(int i = 0; i<r.length; i++){
-            w = Integer.parseInt(r[i]);
-            bytes[i] = (byte)w;
-        }
 
-        if(writeExternal()== false)return "error";
-        try{
+        if (writeExternal() == false) return "error";
+        try {
             //Comprobamos y creamos
+
+            for (int i = 0; i < r.length; i++) {
+                w = Integer.parseInt(r[i]);
+                bytes[i] = (byte) w;
+            }
 
             f.createNewFile();
 
             os = new FileOutputStream(f);
             os.write(bytes);
             os.close();
+        }catch(NumberFormatException e){
+            AlertDialog.Builder builder = new AlertDialog.Builder(c);
+            builder.setTitle("Error de QR");
+            builder.setMessage("Se ha leido un codigo QR con un formato incorrecto");
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
         }catch(Exception e) {
-            return "Error : "+e.getMessage();
+            AlertDialog.Builder builder = new AlertDialog.Builder(c);
+            builder.setTitle("Error");
+            builder.setMessage("Error inesperado: "+ e.getMessage());
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
         }
         return f.getPath();
 
@@ -80,7 +92,11 @@ public class FileWork {
                 }
 
             } catch (Exception e) {
-                //return "Error : "+e.getMessage();
+                AlertDialog.Builder builder = new AlertDialog.Builder(c);
+                builder.setTitle("Error");
+                builder.setMessage("Error inesperado: "+ e.getMessage());
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         }
         return archivo;
