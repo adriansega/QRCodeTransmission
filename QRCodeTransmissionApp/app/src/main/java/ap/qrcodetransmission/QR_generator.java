@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.TextView;
 
 
 import com.google.zxing.*;
@@ -25,13 +27,21 @@ public class QR_generator extends AppCompatActivity{
         setContentView(R.layout.activity_qr_generator);
     }
 
+    public void getPaht(View view){
+        FileWork f = new FileWork(this);
+        TextView t = (TextView) findViewById(R.id.text);
+        t.setText(f.writeArchivo());
+    }
+
     public void generate(View view){
         //ImageView qr = (ImageView) findViewById(R.id.qr);
 
        // FileWork.encodeToQrCode("hola mundo",256,256);
         ImageView qr = (ImageView) findViewById(R.id.qr);
-
-        qr.setImageBitmap(encodeToQrCode("Hola mundo", 1000,1000));
+        String set = "";
+        for(int i = 0; i< 50;i++)
+            set += "Susana grison me ha convencido ";
+        qr.setImageBitmap(encodeToQrCode(set, 2000,2000));
     }
 
     @Override

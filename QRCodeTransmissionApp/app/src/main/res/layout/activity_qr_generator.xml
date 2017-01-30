@@ -22,10 +22,23 @@
         android:onClick="generate"
         android:id="@+id/generate" />
 
+    <Button
+        android:text="Filepaht"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="getPaht"
+        android:id="@+id/filepath" />
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/qr"
         />
+
+    <TextView
+        android:text=""
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text" />
 
 </LinearLayout>
