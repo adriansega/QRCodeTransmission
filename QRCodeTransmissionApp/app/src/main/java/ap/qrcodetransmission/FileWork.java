@@ -26,7 +26,7 @@ public class FileWork {
     }
 
     public String writeArchivo(){
-        File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) +File.separator+"prueva.txt");
+        File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+"prueba.txt");
         //File f = new File("/mnt/sdcard/test.txt");
         File y = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+"");
         FileOutputStream os = null;
