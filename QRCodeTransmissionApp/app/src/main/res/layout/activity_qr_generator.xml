@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:ems="10"
-        android:id="@+id/selectFile"
+        android:id="@+id/filenombre"
         android:hint="Nombre del archivo" />
 
     <Button

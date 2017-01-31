@@ -23,9 +23,9 @@ public class QR_generator extends AppCompatActivity{
 
     ArrayList<String> archivo = new ArrayList<String>();
     FileWork f = null;
-    String nombre = "";
+    String name = "";
     int numCodigos = 0;
-    int numCodigosTotal = 0;
+    int numCodigosTotal = 1;
 
 
     @Override
@@ -38,32 +38,37 @@ public class QR_generator extends AppCompatActivity{
 
 
     public void generate(View view){
-
         //Campo de texto que contiene el nombre del archivo
-        EditText nombreArchivo = (EditText) findViewById(R.id.selectFile);
+        EditText filenombre = (EditText) findViewById(R.id.filenombre);
         //Haz esto donde te haga falta para
-        String name = nombreArchivo.getText().toString();
-        TextView t = (TextView) findViewById(R.id.QRleft);
+        name = filenombre.getText().toString();
 
-        if(numCodigos ==0) {
+
+        if(numCodigos == 0) {
 
             archivo = f.readArchivo(name);
             numCodigosTotal = 1;
             if(archivo.size() >300) defineQRS();
+
         }
         if(numCodigos>numCodigosTotal)return ;
         else {
 
-
+            TextView t = (TextView) findViewById(R.id.QRleft);
             t.setText("Codigos generados para archivo "+name+" : "+numCodigos+" de "+numCodigosTotal);
 
             String set = "";
-            for (int i = 0 + 300 * (numCodigos); ((i < 300 * numCodigos) && (i < archivo.size())); i++) {
-                set += archivo.get(i) + " ";
-            }
+
             numCodigos++;
+            for (int i = 0 + (300*(numCodigos-1)); ((i < 300*numCodigos) && (i < archivo.size())); i++) {
+                set += archivo.get(i)+" ";
+            }
+
+
+
             ImageView qr = (ImageView) findViewById(R.id.qr);
-            qr.setImageBitmap(encodeToQrCode(set, 2500, 2500));
+
+            if(!set.equals(""))qr.setImageBitmap(encodeToQrCode(set, 2500, 2500));
         }
     }
 

@@ -34,10 +34,10 @@ public class FileWork {
         for (String e : archivo) {
             temp += e + " ";
         }
-        byte[] bytes = temp.getBytes();
+
         int w = 0;
         String[] r = temp.split(" ");
-
+        byte[] bytes = new byte[r.length];
 
         if (writeExternal() == false) return "error";
         try {
